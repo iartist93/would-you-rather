@@ -32,7 +32,7 @@ class Navbar extends React.Component {
         props.active === true &&
         css`
           font-weight: 600;
-          border-bottom: 3px solid #4aa030;
+          border-bottom: 3px solid #15b06e;
           background-color: #f1f1f1;
         `};
     `;
