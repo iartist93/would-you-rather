@@ -3,6 +3,8 @@ import LogoImage from "../logo2.png";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import { PrimaryColor, Button } from "./CustomStyles";
+import { RiAddLine } from "react-icons/ri";
 
 class Navbar extends React.Component {
   render() {
@@ -32,7 +34,7 @@ class Navbar extends React.Component {
         props.active === true &&
         css`
           font-weight: 600;
-          border-bottom: 3px solid #15b06e;
+          border-bottom: 3px solid ${PrimaryColor};
           background-color: #f1f1f1;
         `};
     `;
@@ -54,27 +56,32 @@ class Navbar extends React.Component {
     const Nav = styled.div``;
 
     const NavUser = styled.div`
-      background: transparent;
-      border-radius: 3px;
-      border: 2px solid #15b06e;
-      color: #15b06e;
-      margin: 0.5em 1em;
-      padding: 0.5em 1.4em;
+      width: 5.5rem;
+      height: 2.5rem;
+      border-radius: 5px;
       font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-
-      ${(props) =>
-        props.primary &&
-        css`
-          background: palevioletred;
-          color: white;
-        `};
+      margin-right: 1.5rem;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background-color: ${PrimaryColor};
+      border-color: transparent;
     `;
 
     const NavLink = styled(Link)`
       text-decoration: none;
       color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ${(props) =>
+        props.asButton &&
+        css`
+          color: white;
+        `}
     `;
 
     return (
@@ -90,8 +97,8 @@ class Navbar extends React.Component {
           ))}
         </Nav>
         <NavUser>
-          <NavLink to="/new" onClick={() => onActiveChange(null)}>
-            New Poll
+          <NavLink asButton to="/new" onClick={() => onActiveChange(null)}>
+            <RiAddLine size="1.5rem" /> New
           </NavLink>
         </NavUser>
       </Header>
