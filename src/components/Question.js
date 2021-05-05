@@ -5,7 +5,7 @@ import Poll from "./Poll";
 import { BsSkipEndFill } from "react-icons/bs";
 import { PrimaryColor, Centered, Button } from "./CustomStyles";
 
-const Question = ({ id, questions }) => {
+const Question = ({ id, questions, users }) => {
   const PollContainer = styled.div`
     background-color: white;
     border-radius: 4px;
@@ -25,7 +25,7 @@ const Question = ({ id, questions }) => {
     display: flex;
     align-items: center;
     height: 2.5rem;
-    padding: 0.1rem 1.2rem;
+    padding: 0.5rem 0.6rem;
   `;
 
   const PollContent = styled.div`
@@ -43,9 +43,23 @@ const Question = ({ id, questions }) => {
     align-items: flex-start;
   `;
 
+  const Avatar = styled.img`
+    border-radius: 50%;
+    width: 2.2em;
+    height: auto;
+    margin-right: 0.5rem;
+    -webkit-box-shadow: 4px 7px 11px 0px #e2e2e2;
+    box-shadow: 4px 7px 11px 0px #e2e2e2;
+  `;
+
+  const authedUser = "johndoe";
+
   return (
     <PollContainer>
-      <PollHeader>Poll by @{questions[id].author} </PollHeader>
+      <PollHeader>
+        <Avatar src={users[questions[id].author].avatarURL} />
+        <span>Poll by @{questions[id].author} </span>
+      </PollHeader>
       <PollContent>
         <h3>Would you rather?</h3>
         <Form>

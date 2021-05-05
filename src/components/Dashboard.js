@@ -29,12 +29,20 @@ const Dashboard = () => {
       questions[id].answered !== undefined && questions[id].answered === true
   );
 
-  console.log(questions);
+  console.log(users);
 
   return (
     <div>
-      <QuestionList ids={unansweredQuestions} questions={questions} />
-      <QuestionList ids={answeredQuestions} questions={questions} />
+      <QuestionList
+        ids={unansweredQuestions}
+        questions={questions}
+        users={users}
+      />
+      <QuestionList
+        ids={answeredQuestions}
+        questions={questions}
+        users={users}
+      />
     </div>
   );
 };

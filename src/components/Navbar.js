@@ -78,7 +78,7 @@ class Navbar extends React.Component {
       justify-content: center;
 
       ${(props) =>
-        props.asButton &&
+        props.asbutton &&
         css`
           color: white;
         `}
@@ -97,7 +97,7 @@ class Navbar extends React.Component {
           ))}
         </Nav>
         <NavUser>
-          <NavLink asButton to="/new" onClick={() => onActiveChange(null)}>
+          <NavLink asbutton to="/new" onClick={() => onActiveChange(null)}>
             <RiAddLine size="1.5rem" /> New
           </NavLink>
         </NavUser>
