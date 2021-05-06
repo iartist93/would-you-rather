@@ -3,6 +3,13 @@ import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 
 export const PrimaryColor = "#0d61ff";
+export const SecondaryColor = "#4689ff";
+
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 2.2rem;
+`;
 
 export const Centered = styled.div`
   display: flex;
@@ -11,8 +18,8 @@ export const Centered = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 5.5rem;
-  height: 2.5rem;
+  width: 5rem;
+  height: 2.2rem;
   border-radius: 5px;
   font-size: 1rem;
   margin-top: 1.5rem;
@@ -28,6 +35,13 @@ export const Button = styled.button`
     css`
       color: white;
       background-color: ${PrimaryColor};
+      border-color: transparent;
+    `}
+  ${(props) =>
+    props.secondary &&
+    css`
+      color: white;
+      background-color: ${SecondaryColor};
       border-color: transparent;
     `}
   ${(props) =>
