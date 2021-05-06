@@ -3,6 +3,8 @@ import Dashboard from "./Dashboard";
 import Navbar from "./Navbar";
 import NewQuestion from "./NewQuestion";
 import Leaderboard from "./Leaderboard";
+import AnsweredList from "./AnsweredList";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as fakeData from "../services/_DATA";
@@ -55,6 +57,13 @@ function App() {
           <Dashboard
             unansweredQuestions={unansweredQuestions}
             answeredQuestions={answeredQuestions}
+            questions={questions}
+            users={users}
+          />
+        </Route>
+        <Route exact path="/answered">
+          <AnsweredList
+            ids={unansweredQuestions}
             questions={questions}
             users={users}
           />

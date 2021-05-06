@@ -75,7 +75,7 @@ export const Centered = styled.div`
     css`
       ::before {
         content: "";
-        width: 11rem;
+        width: 14rem;
       }
       justify-content: flex-start;
       flex: 1 1 auto;
