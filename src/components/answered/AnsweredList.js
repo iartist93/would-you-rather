@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Answered from "./Answered";
 import { connect } from "react-redux";
+import Answered from "./Answered";
 
 const AnsweredList = ({ questions, users }) => {
   const Centered = styled.div`

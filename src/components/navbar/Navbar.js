@@ -1,10 +1,10 @@
+import LogoImage from "../../logo2.png";
 import React from "react";
-import LogoImage from "../logo2.png";
-import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { PrimaryColor, Button } from "./CustomStyles";
 import { RiAddLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import { css } from "@emotion/react";
+import { PrimaryColor } from "../CustomStyles";
 
 class Navbar extends React.Component {
   render() {

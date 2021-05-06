@@ -1,12 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import Poll from "./Poll";
-import { BsSkipEndFill } from "react-icons/bs";
-import { FiBarChart2 } from "react-icons/fi";
 import { FaMedal } from "react-icons/fa";
-import { Container, Centered, Button, Divider, Avatar } from "./CustomStyles";
-import { TimeStamp } from "./utilites";
+import { Container, Avatar } from "../CustomStyles";
 
 const LeaderboardItem = ({ user, answers, users, index, length }) => {
   const LeaderboardContainer = styled.div`

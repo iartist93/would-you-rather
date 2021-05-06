@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Poll from "./Poll";
 
 const NewPoll = ({ name, text }) => {
   const Input = styled.input`

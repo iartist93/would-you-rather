@@ -1,13 +1,12 @@
 import { connect } from "react-redux";
 import QuestionList from "./QuestionList";
 
-const Dashboard = ({ questions, users }) => {
-  const unansweredQuestions = Object.keys(questions).filter(
+const Latest = ({ questions, users }) => {
+  // questions ids list
+  const qids = Object.keys(questions).filter(
     (id) =>
       questions[id].answered === undefined || questions[id].answered === false
   );
-
-  console.log(users);
 
   /*
 
@@ -27,11 +26,7 @@ const Dashboard = ({ questions, users }) => {
 
   return (
     <div>
-      <QuestionList
-        ids={unansweredQuestions}
-        questions={questions}
-        users={users}
-      />
+      <QuestionList qids={qids} />
     </div>
   );
 };
@@ -41,4 +36,4 @@ const mapStateToProps = (state) => ({
   users: state.users,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Latest);

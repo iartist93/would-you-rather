@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import LeaderboardItem from "./LeaderboardItem";
-import { Centered } from "./CustomStyles";
+import { Centered } from "../CustomStyles";
 import { connect } from "react-redux";
+
+import LeaderboardItem from "./LeaderboardItem";
 
 const Leaderboard = ({ questions, users }) => {
   const LeaderboardContainer = styled.div`

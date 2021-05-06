@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Container, Centered, Button, Divider } from "../CustomStyles";
 import NewPoll from "./NewPoll";
-import { BsSkipEndFill } from "react-icons/bs";
-import { FiBarChart2 } from "react-icons/fi";
-import { Container, Centered, Button, Divider } from "./CustomStyles";
-import { TimeStamp } from "./utilites";
 
 const NewQuestion = () => {
   const PollContainer = styled.div`

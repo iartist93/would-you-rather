@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import Question from "./Question";
 
-const QuestionList = ({ ids, questions, users }) => {
+const QuestionList = ({ qids }) => {
   const Centered = styled.div`
     display: flex;
     flex-direction: column;
@@ -13,8 +12,8 @@ const QuestionList = ({ ids, questions, users }) => {
 
   return (
     <Centered>
-      {ids.map((id) => (
-        <Question key={id} id={id} questions={questions} users={users} />
+      {qids.map((qid) => (
+        <Question key={qid} qid={qid} />
       ))}
     </Centered>
   );

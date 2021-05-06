@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import Poll from "./Poll";
-import { BsSkipEndFill } from "react-icons/bs";
+import PollResult from "./PollResult";
 import { FiBarChart2 } from "react-icons/fi";
-import { Container, Centered, Button, Avatar } from "./CustomStyles";
-import { TimeStamp } from "./utilites";
+import { Container, Centered, Avatar } from "../CustomStyles";
+import { TimeStamp } from "../utilites";
 
-const Question = ({ id, questions, users }) => {
+const Answered = ({ id, questions, users }) => {
   const PollContainer = styled.div`
     background-color: white;
     border-radius: 10px;
     width: 40rem;
-    height: 24rem;
-    margin-top: 2rem;
+    height: 18rem;
+    margin: 1rem 0;
 
     display: flex;
     flex-direction: column;
@@ -82,7 +80,7 @@ const Question = ({ id, questions, users }) => {
   `;
 
   const Text = styled.span`
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #3b545f;
     margin-right: 0.5rem;
   `;
@@ -92,6 +90,16 @@ const Question = ({ id, questions, users }) => {
   const voters = questions[id].voters.map(
     (voter) => users[voter.user].avatarURL
   );
+
+  const option1Votes = questions[id].voters.filter(
+    (voter) => voter.answer === "optionOne"
+  ).length;
+
+  const option2Votes = questions[id].voters.filter(
+    (voter) => voter.answer === "optionTwo"
+  ).length;
+
+  const totalVotes = option1Votes + option2Votes;
 
   return (
     <PollContainer>
@@ -105,42 +113,43 @@ const Question = ({ id, questions, users }) => {
       <PollContent>
         <h3 style={{ marginBottom: 6 }}>Would you rather?</h3>
         <Form>
-          <Poll name="option1" text={questions[id].optionOne.text} />
-          <Poll name="option2" text={questions[id].optionTwo.text} />
+          <PollResult
+            name="option1"
+            text={questions[id].optionOne.text}
+            votes={option1Votes}
+            totalVotes={totalVotes}
+          />
+          <PollResult
+            name="option2"
+            text={questions[id].optionTwo.text}
+            votes={option2Votes}
+            totalVotes={totalVotes}
+          />
           <Container spaced aligncenter top="2.5rem">
             <Centered>
-              <Button secondary type="submit">
-                Vote
-              </Button>
-              <Button outlined type="submit">
-                <BsSkipEndFill size="1.4rem" color={"#3b3b3b"} /> Skip
-              </Button>
-            </Centered>
-            <Centered trilling>
-              <FiBarChart2 color="#154499" />
-              <Text>Voted</Text>
-              {voters.slice(0, 6).map((voter, index) => (
-                <Avatar
-                  key={index}
-                  src={voter}
-                  size="1.4rem"
-                  stacked
-                  index={index}
-                />
-              ))}
-              {voters.length > 6 && (
-                <EmptyAvatar>+{voters.length - 6}</EmptyAvatar>
-              )}
+              <Text>{voters.length} votes . Final Result</Text>
+              <Centered trilling>
+                <FiBarChart2 color="#154499" />
+                <Text>Voted</Text>
+                {voters.slice(0, 6).map((voter, index) => (
+                  <Avatar
+                    key={index}
+                    src={voter}
+                    size="1.4rem"
+                    stacked
+                    index={index}
+                  />
+                ))}
+                {voters.length > 6 && (
+                  <EmptyAvatar>+{voters.length - 6}</EmptyAvatar>
+                )}
+              </Centered>
             </Centered>
           </Container>
         </Form>
-        <Container top="2.5rem">
-          <Avatar src={users[authedUser].avatarURL} size="2rem" />
-          <Input type="text" name="text" placeholder="Write a comment ..." />
-        </Container>
       </PollContent>
     </PollContainer>
   );
 };
 
-export default Question;
+export default Answered;

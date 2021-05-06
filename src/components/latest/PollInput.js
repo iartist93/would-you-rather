@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Poll = ({ name, text }) => {
+const PollInput = ({ name, text }) => {
   const PollItem = styled.div`
     margin: 0.7rem 0;
   `;
@@ -14,4 +14,4 @@ const Poll = ({ name, text }) => {
   );
 };
 
-export default Poll;
+export default PollInput;
