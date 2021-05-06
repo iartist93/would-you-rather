@@ -1,16 +1,20 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import Question from "./Question";
 import Answered from "./Answered";
+import { connect } from "react-redux";
 
-const AnsweredList = ({ ids, questions, users }) => {
+const AnsweredList = ({ questions, users }) => {
   const Centered = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   `;
+
+  const ids = Object.keys(questions).filter(
+    (id) =>
+      questions[id].answered === undefined || questions[id].answered === false
+  );
 
   return (
     <Centered>
@@ -22,4 +26,9 @@ const AnsweredList = ({ ids, questions, users }) => {
   );
 };
 
-export default AnsweredList;
+const mapStateToProps = (state) => ({
+  questions: state.questions,
+  users: state.users,
+});
+
+export default connect(mapStateToProps)(AnsweredList);

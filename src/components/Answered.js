@@ -103,10 +103,6 @@ const Answered = ({ id, questions, users }) => {
 
   const totalVotes = option1Votes + option2Votes;
 
-  console.log("-------------------");
-  console.log(option1Votes);
-  console.log(option2Votes);
-
   return (
     <PollContainer>
       <PollHeader>

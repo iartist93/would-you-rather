@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import Question from "./Question";
 import LeaderboardItem from "./LeaderboardItem";
-import { Centered, Container, Divider } from "./CustomStyles";
+import { Centered } from "./CustomStyles";
+import { connect } from "react-redux";
 
 const Leaderboard = ({ questions, users }) => {
   const LeaderboardContainer = styled.div`
@@ -37,8 +36,6 @@ const Leaderboard = ({ questions, users }) => {
     }))
     .sort((a, b) => b.answers - a.answers);
 
-  console.log(sortedAnswers);
-
   return (
     <Centered>
       <LeaderboardContainer>
@@ -58,4 +55,9 @@ const Leaderboard = ({ questions, users }) => {
   );
 };
 
-export default Leaderboard;
+const mapStateToProps = (state) => ({
+  questions: state.questions,
+  users: state.users,
+});
+
+export default connect(mapStateToProps)(Leaderboard);

@@ -9,8 +9,6 @@ import { Container, Centered, Button, Divider, Avatar } from "./CustomStyles";
 import { TimeStamp } from "./utilites";
 
 const LeaderboardItem = ({ user, answers, users, index, length }) => {
-  console.log(user);
-
   const LeaderboardContainer = styled.div`
     width: 100%;
     background-color: white;

@@ -88,10 +88,10 @@ const Question = ({ id, questions, users }) => {
   `;
 
   const authedUser = "johndoe";
+
   const voters = questions[id].voters.map(
     (voter) => users[voter.user].avatarURL
   );
-  console.log(voters);
 
   return (
     <PollContainer>
