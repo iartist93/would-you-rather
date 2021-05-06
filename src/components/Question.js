@@ -18,7 +18,7 @@ const Question = ({ id, questions, users }) => {
     display: flex;
     flex-direction: column;
     padding: 1.2rem;
-    z-index: -500;
+    /* z-index: -500; */
 
     -webkit-box-shadow: -10px 13px 10px -3px rgba(232, 232, 232, 1);
     -moz-box-shadow: -10px 13px 10px -3px rgba(232, 232, 232, 1);
@@ -38,7 +38,7 @@ const Question = ({ id, questions, users }) => {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    z-index: -100;
+    /* z-index: -100; */
   `;
 
   const Form = styled.form`
@@ -71,7 +71,7 @@ const Question = ({ id, questions, users }) => {
         top: 0px;
         margin-left: -1.1rem;
         border: 2px solid #f9faff;
-        z-index: -${props.index};
+        /* z-index: -${props.index}; */
         -webkit-box-shadow: 1px 1px 1px 0px #e2e2e2;
         box-shadow: 1px 1px 1px 0px #e2e2e2;
       `}
@@ -90,7 +90,7 @@ const Question = ({ id, questions, users }) => {
     font-weight: 600;
     font-size: 0.9rem;
     margin-left: 0.2rem;
-    z-index: -6;
+    /* z-index: -6; */
   `;
 
   const Input = styled.input`
@@ -127,7 +127,6 @@ const Question = ({ id, questions, users }) => {
           <Avatar src={users[questions[id].author].avatarURL} />
           <span>Poll by @{questions[id].author} </span>
         </Centered>
-        {/* <span>{questions[id].timestamp}</span> */}
         <QuestionTimeStamp id={id} questions={questions} />
       </PollHeader>
       <PollContent>
@@ -164,7 +163,7 @@ const Question = ({ id, questions, users }) => {
         </Form>
         <Container>
           <Avatar src={users[authedUser].avatarURL} size="2rem" />
-          <Input type="text" placeholder="Write a comment ..." />
+          <Input type="text" name="text" placeholder="Write a comment ..." />
         </Container>
       </PollContent>
     </PollContainer>

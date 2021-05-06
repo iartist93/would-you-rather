@@ -26,6 +26,12 @@ export const Container = styled.div`
     css`
       align-items: center;
     `}
+
+  ${(props) =>
+    props.centered &&
+    css`
+      justify-content: center;
+    `}
 `;
 
 export const Centered = styled.div`
