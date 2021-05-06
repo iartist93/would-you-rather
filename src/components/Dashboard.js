@@ -29,7 +29,14 @@ const Dashboard = () => {
       questions[id].answered !== undefined && questions[id].answered === true
   );
 
-  console.log(users);
+  const voters = Object.values(questions).map((question) => question.voters);
+
+  const johndoeVotes = Object.values(questions).filter(
+    (question) =>
+      question.voters.filter((voter) => voter.user === "johndoe").length > 0
+  );
+
+  // console.log(voters);
 
   return (
     <div>

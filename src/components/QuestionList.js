@@ -14,7 +14,7 @@ const QuestionList = ({ ids, questions, users }) => {
   return (
     <Centered>
       {ids.map((id) => (
-        <Question id={id} questions={questions} users={users} />
+        <Question key={id} id={id} questions={questions} users={users} />
       ))}
     </Centered>
   );
