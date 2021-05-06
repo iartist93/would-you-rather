@@ -4,15 +4,15 @@ import { css } from "@emotion/react";
 import Poll from "./Poll";
 import { BsSkipEndFill } from "react-icons/bs";
 import { FiBarChart2 } from "react-icons/fi";
-import { Container, Centered, Button } from "./CustomStyles";
+import { Container, Centered, Button, Avatar } from "./CustomStyles";
 import { TimeStamp } from "./utilites";
 
 const Question = ({ id, questions, users }) => {
   const PollContainer = styled.div`
     background-color: white;
     border-radius: 10px;
-    width: 35rem;
-    height: 21rem;
+    width: 40rem;
+    height: 24rem;
     margin-top: 2rem;
 
     display: flex;
@@ -49,34 +49,6 @@ const Question = ({ id, questions, users }) => {
     align-items: flex-start;
   `;
 
-  const Avatar = styled.img`
-    border-radius: 50%;
-    width: 2.2em;
-    height: auto;
-    margin-right: 0.5rem;
-    -webkit-box-shadow: 4px 7px 11px 0px #e2e2e2;
-    box-shadow: 4px 7px 11px 0px #e2e2e2;
-
-    ${(props) =>
-      props.size &&
-      css`
-        width: ${props.size};
-      `}
-
-    ${(props) =>
-      props.stacked &&
-      css`
-        position: relative;
-        left: 1.1rem;
-        top: 0px;
-        margin-left: -1.1rem;
-        border: 2px solid #f9faff;
-        /* z-index: -${props.index}; */
-        -webkit-box-shadow: 1px 1px 1px 0px #e2e2e2;
-        box-shadow: 1px 1px 1px 0px #e2e2e2;
-      `}
-  `;
-
   const EmptyAvatar = styled.div`
     border-radius: 50%;
     width: 2.1em;
@@ -95,11 +67,12 @@ const Question = ({ id, questions, users }) => {
 
   const Input = styled.input`
     width: 100%;
-    height: 1.5rem;
-    border-radius: 0 1.4rem 1.4rem 1.4rem;
+    height: 2rem;
+    border-radius: 0 1.4rem 1.4rem 1.6rem;
     outline: none;
     border: 1px solid #d7d8da;
-    padding: 0.2rem 0.9rem;
+    padding: 0.2rem 1.1rem;
+    font-size: 1.05rem;
   `;
 
   const QuestionTimeStamp = styled(TimeStamp)`
@@ -134,7 +107,7 @@ const Question = ({ id, questions, users }) => {
         <Form>
           <Poll name="option1" text={questions[id].optionOne.text} />
           <Poll name="option2" text={questions[id].optionTwo.text} />
-          <Container spaced aligncenter>
+          <Container spaced aligncenter top="2.5rem">
             <Centered>
               <Button secondary type="submit">
                 Vote
@@ -161,7 +134,7 @@ const Question = ({ id, questions, users }) => {
             </Centered>
           </Container>
         </Form>
-        <Container>
+        <Container top="2.5rem">
           <Avatar src={users[authedUser].avatarURL} size="2rem" />
           <Input type="text" name="text" placeholder="Write a comment ..." />
         </Container>

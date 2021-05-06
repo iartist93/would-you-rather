@@ -97,7 +97,7 @@ class Navbar extends React.Component {
           ))}
         </Nav>
         <NavUser>
-          <NavLink asbutton to="/new" onClick={() => onActiveChange(null)}>
+          <NavLink to="/new" onClick={() => onActiveChange(null)} asbutton>
             <RiAddLine size="1.5rem" /> New
           </NavLink>
         </NavUser>
@@ -110,6 +110,7 @@ export const navItems = {
   Latest: "/",
   Answered: "/answered",
   Stared: "/stared",
+  Leaderboard: "/leaderboard",
 };
 
 export default Navbar;
