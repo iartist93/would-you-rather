@@ -1,31 +1,19 @@
 import { connect } from "react-redux";
-import { Centered } from "../CustomStyles";
 import QuestionList from "./QuestionList";
 
 const Latest = ({ questions, users }) => {
+  //TODO: replace this with state
+  const authedUser = "johndoe";
+
   // questions ids list
-  const qids = Object.keys(questions).filter(
-    (id) =>
-      questions[id].answered === undefined || questions[id].answered === false
+  const answered = Object.keys(users[authedUser].answers);
+  const unanswered = Object.keys(questions).filter(
+    (question) => !answered.includes(question)
   );
 
-  /*
+  console.log(unanswered);
 
-  const answeredQuestions = Object.keys(questions).filter(
-    (id) =>
-      questions[id].answered !== undefined && questions[id].answered === true
-  );
-
-  const voters = Object.values(questions).map((question) => question.voters);
-
-  const johndoeVotes = Object.values(questions).filter(
-    (question) =>
-      question.voters.filter((voter) => voter.user === "johndoe").length > 0
-  );
-
-  */
-
-  return <QuestionList qids={qids} />;
+  return <QuestionList qids={unanswered} />;
 };
 
 const mapStateToProps = (state) => ({

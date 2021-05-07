@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsSkipEndFill } from "react-icons/bs";
 import { FiBarChart2 } from "react-icons/fi";
 
@@ -13,17 +13,46 @@ import {
   Form,
   PollContent,
 } from "../CustomStyles";
+import { connect } from "react-redux";
 
-const Content = ({ question, votersAvatars }) => {
+import { handleAddVote } from "../../actions/shared";
+
+const Content = ({ question, votersAvatars, dispatch }) => {
+  //TODO: replace this with state
+  const authedUser = "johndoe";
+
+  const [selected, setSelected] = useState(null);
+
+  const handleSelectionChange = (e) => {
+    setSelected(e.target.value);
+  };
+
+  const handleVote = (e) => {
+    e.preventDefault();
+    dispatch(handleAddVote(authedUser, question.id, selected));
+  };
+
   return (
     <PollContent>
       <h3 style={{ marginBottom: 6 }}>Would you rather?</h3>
       <Form>
-        <PollInput name="option1" text={question.optionOne.text} />
-        <PollInput name="option2" text={question.optionTwo.text} />
+        <PollInput
+          id={question.id}
+          value="optionOne"
+          text={question.optionOne.text}
+          onChange={handleSelectionChange}
+          selected={selected}
+        />
+        <PollInput
+          id={question.id}
+          value="optionTwo"
+          text={question.optionTwo.text}
+          onChange={handleSelectionChange}
+          selected={selected}
+        />
         <Container spaced aligncenter top="2.5rem">
           <Centered>
-            <Button secondary type="submit">
+            <Button secondary type="submit" onClick={handleVote}>
               Vote
             </Button>
             <Button outlined type="submit">
@@ -52,4 +81,4 @@ const Content = ({ question, votersAvatars }) => {
   );
 };
 
-export default Content;
+export default connect()(Content);

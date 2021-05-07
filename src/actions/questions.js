@@ -1,8 +1,15 @@
+import "../services/_DATA";
+
+//----------------------------------------------------//
+// Constants
+
 export const RECIEVE_QUESTIONS = "RECIEVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
-export const ADD_VOTE = "ADD_VOTE";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_NEXT = "GET_NEXT";
+
+//----------------------------------------------------//
+// Action Creators
 
 export const recieveQuestions = (questions) => ({
   type: RECIEVE_QUESTIONS,
@@ -18,14 +25,11 @@ export const addQuestion = (question) => ({
   question,
 });
 
-export const addVote = (vote, questionId) => ({
-  type: ADD_VOTE,
-  vote,
-  questionId,
+export const addComment = (comment, qid) => ({
+  type: ADD_COMMENT,
+  comment,
+  qid,
 });
 
-export const addComment = (comment, questionId) => ({
-  type: ADD_VOTE,
-  comment,
-  questionId,
-});
+//----------------------------------------------------//
+// Thunks
