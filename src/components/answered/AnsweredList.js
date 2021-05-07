@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
-import Answered from "./Answered";
+import Question from "./Question";
 
 const AnsweredList = ({ questions, users }) => {
   const Centered = styled.div`
@@ -11,6 +11,7 @@ const AnsweredList = ({ questions, users }) => {
     align-items: center;
   `;
 
+  // TODO:: Change this to answers
   const ids = Object.keys(questions).filter(
     (id) =>
       questions[id].answered === undefined || questions[id].answered === false
@@ -20,7 +21,7 @@ const AnsweredList = ({ questions, users }) => {
     <Centered>
       <h3 style={{ marginTop: 40 }}>All Answered Questions</h3>
       {ids.map((id) => (
-        <Answered key={id} id={id} questions={questions} users={users} />
+        <Question key={id} id={id} />
       ))}
     </Centered>
   );

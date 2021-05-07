@@ -10,6 +10,8 @@ const QuestionList = ({ qids }) => {
     align-items: center;
   `;
 
+  console.log(qids);
+
   return (
     <Centered>
       {qids.map((qid) => (

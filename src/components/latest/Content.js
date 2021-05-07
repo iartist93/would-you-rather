@@ -6,7 +6,7 @@ import { FiBarChart2 } from "react-icons/fi";
 import PollInput from "./PollInput";
 import { Container, Avatar, Centered, Button } from "../CustomStyles";
 
-const Content = ({ question, voters }) => {
+const Content = ({ question, votersAvatars }) => {
   const PollContent = styled.div`
     display: flex;
     flex-direction: column;
@@ -63,7 +63,7 @@ const Content = ({ question, voters }) => {
           <Centered trilling>
             <FiBarChart2 color="#154499" />
             <Text>Voted</Text>
-            {voters.slice(0, 6).map((voter, index) => (
+            {votersAvatars.slice(0, 6).map((voter, index) => (
               <Avatar
                 key={index}
                 src={voter}
@@ -72,8 +72,8 @@ const Content = ({ question, voters }) => {
                 index={index}
               />
             ))}
-            {voters.length > 6 && (
-              <EmptyAvatar>+{voters.length - 6}</EmptyAvatar>
+            {votersAvatars.length > 6 && (
+              <EmptyAvatar>+{votersAvatars.length - 6}</EmptyAvatar>
             )}
           </Centered>
         </Container>
