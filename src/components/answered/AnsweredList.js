@@ -3,12 +3,8 @@ import { connect } from "react-redux";
 import Question from "./Question";
 import { Container } from "../CustomStyles";
 
-const AnsweredList = ({ questions, users }) => {
-  // TODO:: Change this to answers
-  const ids = Object.keys(questions).filter(
-    (id) =>
-      questions[id].answered === undefined || questions[id].answered === false
-  );
+const AnsweredList = ({ user }) => {
+  const ids = Object.keys(user.answers);
 
   return (
     <Container centered aligncenter column>
@@ -21,8 +17,8 @@ const AnsweredList = ({ questions, users }) => {
 };
 
 const mapStateToProps = (state) => ({
-  questions: state.questions,
-  users: state.users,
+  //TODO : listem for the current authed user only
+  user: state.users["johndoe"],
 });
 
 export default connect(mapStateToProps)(AnsweredList);
