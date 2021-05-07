@@ -1,27 +1,12 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { Centered } from "../CustomStyles";
+
 import { connect } from "react-redux";
 
 import LeaderboardItem from "./LeaderboardItem";
 
+import { RoundedContainer, Container } from "../CustomStyles";
+
 const Leaderboard = ({ questions, users }) => {
-  const LeaderboardContainer = styled.div`
-    background-color: white;
-    border-radius: 10px;
-    width: 60rem;
-    margin-top: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    padding: 1.2rem;
-    /* z-index: -500; */
-
-    -webkit-box-shadow: -10px 13px 10px -3px rgba(232, 232, 232, 1);
-    -moz-box-shadow: -10px 13px 10px -3px rgba(232, 232, 232, 1);
-    box-shadow: -10px 13px 10px -3px rgba(232, 232, 232, 1);
-  `;
-
   const usersIds = Object.values(users).map((user) => user.id);
   const userAnswers = Object.keys(users).map(
     (user) =>
@@ -38,9 +23,9 @@ const Leaderboard = ({ questions, users }) => {
     .sort((a, b) => b.answers - a.answers);
 
   return (
-    <Centered>
-      <LeaderboardContainer>
-        <h3>All Leaderboard</h3>
+    <Container center aligncenter column>
+      <h3 style={{ marginTop: 40 }}>All Leaderboard</h3>
+      <RoundedContainer width="60rem">
         {sortedAnswers.map((item, index) => (
           <LeaderboardItem
             key={index}
@@ -51,8 +36,8 @@ const Leaderboard = ({ questions, users }) => {
             length={sortedAnswers.length}
           />
         ))}
-      </LeaderboardContainer>
-    </Centered>
+      </RoundedContainer>
+    </Container>
   );
 };
 

@@ -1,16 +1,9 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import Question from "./Question";
+import { Container } from "../CustomStyles";
 
 const AnsweredList = ({ questions, users }) => {
-  const Centered = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  `;
-
   // TODO:: Change this to answers
   const ids = Object.keys(questions).filter(
     (id) =>
@@ -18,12 +11,12 @@ const AnsweredList = ({ questions, users }) => {
   );
 
   return (
-    <Centered>
+    <Container centered aligncenter column>
       <h3 style={{ marginTop: 40 }}>All Answered Questions</h3>
       {ids.map((id) => (
         <Question key={id} id={id} />
       ))}
-    </Centered>
+    </Container>
   );
 };
 

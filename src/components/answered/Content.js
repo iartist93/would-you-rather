@@ -1,25 +1,9 @@
 import React from "react";
-import styled from "@emotion/styled";
 
 import PollResult from "./PollResult";
+import { Form, PollContent } from "../CustomStyles";
 
 const Content = ({ question, votersAvatars }) => {
-  const PollContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    /* z-index: -100; */
-  `;
-
-  const Form = styled.form`
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  `;
-
   const option1Votes = question.voters.filter(
     (voter) => voter.answer === "optionOne"
   ).length;

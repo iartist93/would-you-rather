@@ -4,47 +4,18 @@ import { BsSkipEndFill } from "react-icons/bs";
 import { FiBarChart2 } from "react-icons/fi";
 
 import PollInput from "./PollInput";
-import { Container, Avatar, Centered, Button } from "../CustomStyles";
+import {
+  Container,
+  Avatar,
+  Centered,
+  Button,
+  EmptyAvatar,
+  Text,
+  Form,
+  PollContent,
+} from "../CustomStyles";
 
 const Content = ({ question, votersAvatars }) => {
-  const PollContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    /* z-index: -100; */
-  `;
-
-  const Form = styled.form`
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  `;
-
-  const EmptyAvatar = styled.div`
-    border-radius: 50%;
-    width: 2.1em;
-    height: 2.1em;
-    background-color: #e1efff;
-    color: #154499;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-left: 0.2rem;
-    /* z-index: -6; */
-  `;
-
-  const Text = styled.span`
-    font-size: 0.85rem;
-    color: #3b545f;
-    margin-right: 0.5rem;
-  `;
-
   return (
     <PollContent>
       <h3 style={{ marginBottom: 6 }}>Would you rather?</h3>

@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Centered } from "../CustomStyles";
 import QuestionList from "./QuestionList";
 
 const Latest = ({ questions, users }) => {
@@ -24,11 +25,7 @@ const Latest = ({ questions, users }) => {
 
   */
 
-  return (
-    <div>
-      <QuestionList qids={qids} />
-    </div>
-  );
+  return <QuestionList qids={qids} />;
 };
 
 const mapStateToProps = (state) => ({
