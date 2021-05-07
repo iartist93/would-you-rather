@@ -9,26 +9,13 @@ import NewQuestion from "./newQuestion/NewQuestion";
 import Leaderboard from "./leaderboard/Leaderboard";
 import AnsweredList from "./answered/AnsweredList";
 
-import { recieveQuestions } from "../actions/questions";
-import { recieveUsers } from "../actions/users";
-import { toggleLoading } from "../actions/loading";
-import * as fakeData from "../services/_DATA";
+import { handleInitalData } from "../actions/shared";
 
 function App({ dispatch, loading }) {
   const [activeNavItem, setActiveNavItem] = useState("Latest");
 
-  const fetchInitalData = async () => {
-    const [questions, users] = await Promise.all([
-      fakeData._getQuestions(),
-      fakeData._getUsers(),
-    ]);
-    dispatch(recieveQuestions(questions));
-    dispatch(recieveUsers(users));
-    dispatch(toggleLoading());
-  };
-
   useEffect(() => {
-    fetchInitalData();
+    dispatch(handleInitalData());
   }, []);
 
   return (
