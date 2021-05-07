@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { FaMedal } from "react-icons/fa";
 import { Container, Avatar } from "../CustomStyles";
 
-const LeaderboardItem = ({ user, answers, users, index, length }) => {
+const LeaderboardItem = ({ user, answers, index, length }) => {
   const LeaderboardContainer = styled.div`
     width: 100%;
     background-color: white;
@@ -57,15 +57,15 @@ const LeaderboardItem = ({ user, answers, users, index, length }) => {
           )}
         </RankCol>
         <Col>
-          <Avatar src={users[user].avatarURL} />
+          <Avatar src={user.avatarURL} />
         </Col>
-        <Col>{users[user].id}</Col>
-        <Col>{users[user].name}</Col>
+        <Col>{user.id}</Col>
+        <Col>{user.name}</Col>
         <Col>
           {answers} <Subtitle> answered </Subtitle>
         </Col>
         <Col>
-          {answers} <Subtitle> asked </Subtitle>
+          {user.questions.length} <Subtitle> asked </Subtitle>
         </Col>
       </LeaderboardContainer>
     </Container>

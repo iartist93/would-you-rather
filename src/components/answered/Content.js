@@ -4,14 +4,8 @@ import PollResult from "./PollResult";
 import { Form, PollContent } from "../CustomStyles";
 
 const Content = ({ question, votersAvatars }) => {
-  const option1Votes = question.voters.filter(
-    (voter) => voter.answer === "optionOne"
-  ).length;
-
-  const option2Votes = question.voters.filter(
-    (voter) => voter.answer === "optionTwo"
-  ).length;
-
+  const option1Votes = question.optionOne.votes.length;
+  const option2Votes = question.optionTwo.votes.length;
   const totalVotes = option1Votes + option2Votes;
 
   return (

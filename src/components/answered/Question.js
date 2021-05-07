@@ -8,9 +8,8 @@ import Content from "./Content";
 import { RoundedContainer } from "../CustomStyles";
 
 const Question = ({ id, question, users }) => {
-  const votersAvatars = question.voters.map(
-    (voter) => users[voter.user].avatarURL
-  );
+  const voters = question.optionOne.votes.concat(question.optionTwo.votes);
+  const votersAvatars = voters.map((voter) => users[voter].avatarURL);
 
   return (
     <RoundedContainer>

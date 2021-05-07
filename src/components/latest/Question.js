@@ -11,9 +11,9 @@ const Question = ({ qid, question, users }) => {
   //TODO: replace this with state
   const authedUser = "johndoe";
 
-  const votersAvatars = question.voters.map(
-    (voter) => users[voter.user].avatarURL
-  );
+  // get all voters for current question
+  const voters = question.optionOne.votes.concat(question.optionTwo.votes);
+  const votersAvatars = voters.map((voter) => users[voter].avatarURL);
 
   return (
     <RoundedContainer>

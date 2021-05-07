@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { BsSkipEndFill } from "react-icons/bs";
 import { FiBarChart2 } from "react-icons/fi";
 

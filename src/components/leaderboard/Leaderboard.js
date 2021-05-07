@@ -7,20 +7,19 @@ import LeaderboardItem from "./LeaderboardItem";
 import { RoundedContainer, Container } from "../CustomStyles";
 
 const Leaderboard = ({ questions, users }) => {
-  const usersIds = Object.values(users).map((user) => user.id);
-  const userAnswers = Object.keys(users).map(
-    (user) =>
-      Object.values(questions).filter(
-        (question) =>
-          question.voters.filter((voter) => voter.user === user).length > 0
-      ).length
+  const userTotalAnswersMap = Object.values(users).map((user) => ({
+    user,
+    totalAnswers: Object.keys(user.answers).length,
+  }));
+
+  const sortedAnswers = userTotalAnswersMap.sort(
+    (a, b) =>
+      b.totalAnswers +
+      b.user.questions.length -
+      (a.totalAnswers + a.user.questions.length)
   );
-  const sortedAnswers = usersIds
-    .map((user, index) => ({
-      user: user,
-      answers: userAnswers[index],
-    }))
-    .sort((a, b) => b.answers - a.answers);
+
+  console.log(sortedAnswers);
 
   return (
     <Container center aligncenter column>
@@ -28,12 +27,11 @@ const Leaderboard = ({ questions, users }) => {
       <RoundedContainer width="60rem">
         {sortedAnswers.map((item, index) => (
           <LeaderboardItem
-            key={index}
+            key={item.user.id}
             user={item.user}
-            answers={item.answers}
-            users={users}
+            answers={item.totalAnswers}
             index={index}
-            length={sortedAnswers.length}
+            length={userTotalAnswersMap.length}
           />
         ))}
       </RoundedContainer>
