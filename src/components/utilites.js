@@ -1,8 +1,8 @@
 import React from "react";
 import { formatDistance, formatRelative, formatDistanceToNow } from "date-fns";
 
-export const TimeStamp = ({ question, ...otherProps }) => {
-  const questionData = new Date(question.timestamp);
+export const TimeStamp = ({ timestamp, ...otherProps }) => {
+  const questionData = new Date(timestamp);
   const currentDate = new Date();
   const questionDataMS = questionData.getTime();
   const currentDateMS = currentDate.getTime();
