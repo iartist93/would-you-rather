@@ -108,6 +108,12 @@ export const Button = styled.button`
   cursor: pointer;
 
   ${(props) =>
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
+
+  ${(props) =>
     props.disabled &&
     css`
       color: gray;
