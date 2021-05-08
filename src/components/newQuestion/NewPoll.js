@@ -9,7 +9,7 @@ const Input = styled.input`
   outline: none;
   font-size: 1.1rem;
 `;
-const NewPoll = ({ name, text, onChange, value, ref1, onClick, index }) => {
+const NewPoll = ({ name, onChange, value }) => {
   return (
     <li style={{ color: "#7E8594" }}>
       <Input
@@ -18,9 +18,7 @@ const NewPoll = ({ name, text, onChange, value, ref1, onClick, index }) => {
         name={name}
         value={value}
         placeholder={`Add ${name}`}
-        ref={(el) => ref1(el)}
         onChange={onChange}
-        onClick={() => onClick(index)}
       />
     </li>
   );

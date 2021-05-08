@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import Question from "./Question";
 import { Container } from "../CustomStyles";
 
-const AnsweredList = ({ user }) => {
-  const ids = Object.keys(user.answers);
+const AnsweredList = ({ user, questions }) => {
+  const ids = Object.keys(user.answers).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  );
 
   return (
     <Container centered aligncenter column>
@@ -17,7 +19,8 @@ const AnsweredList = ({ user }) => {
 };
 
 const mapStateToProps = (state) => ({
-  //TODO : listem for the current authed user only
+  //TODO : listem for the current authed user
+  questions: state.questions,
   user: state.users["johndoe"],
 });
 

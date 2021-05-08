@@ -34,7 +34,9 @@ const Content = ({ question, votersAvatars, dispatch }) => {
 
   return (
     <PollContent>
-      <h3 style={{ marginBottom: 6 }}>Would you rather?</h3>
+      <h3 style={{ marginBottom: 6 }}>
+        {question.title ? question.title : "Would you rather?"}
+      </h3>
       <Form>
         <PollInput
           id={question.id}

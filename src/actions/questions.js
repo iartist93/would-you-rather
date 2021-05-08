@@ -1,4 +1,5 @@
 import "../services/_DATA";
+import * as fakeData from "../services/_DATA";
 
 //----------------------------------------------------//
 // Constants
@@ -33,3 +34,16 @@ export const addComment = (comment, qid) => ({
 
 //----------------------------------------------------//
 // Thunks
+
+/**
+ * handle prepareing the question on the server by adding id, timestamp to it
+ * store the new question on db and on state
+ * @param {*} question object with `{title, optionOneText, optionTwoText, author}`
+ */
+export const handleSaveQuestion = (question) => {
+  return async (dispatch) => {
+    const reuslt = await fakeData._saveQuestion(question);
+    console.log(reuslt);
+    dispatch(addQuestion(reuslt));
+  };
+};

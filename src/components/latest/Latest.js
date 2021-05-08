@@ -7,9 +7,9 @@ const Latest = ({ questions, users }) => {
 
   // questions ids list
   const answered = Object.keys(users[authedUser].answers);
-  const unanswered = Object.keys(questions).filter(
-    (question) => !answered.includes(question)
-  );
+  const unanswered = Object.keys(questions)
+    .filter((question) => !answered.includes(question))
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
   console.log(unanswered);
 

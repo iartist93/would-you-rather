@@ -143,11 +143,12 @@ export function _getQuestions() {
   });
 }
 
-function formatQuestion({ optionOneText, optionTwoText, author }) {
+function formatQuestion({ title, optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),
     timestamp: Date.now(),
     author,
+    title,
     optionOne: {
       votes: [],
       text: optionOneText,

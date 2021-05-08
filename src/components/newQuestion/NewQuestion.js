@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { Container, Centered, Button, Divider } from "../CustomStyles";
 import NewPoll from "./NewPoll";
+import { connect } from "react-redux";
+import { handleSaveQuestion } from "../../actions/questions";
 
 const PollContainer = styled.div`
   background-color: white;
@@ -64,14 +66,12 @@ const Input = styled.input`
   }
 `;
 
-const NewQuestion = () => {
+const NewQuestion = ({ dispatch }) => {
   const authedUser = "johndoe";
 
   const [title, setTitle] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
-
-  const inputRef = useRef([]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -85,12 +85,18 @@ const NewQuestion = () => {
     setOption2(e.target.value);
   };
 
-  const handleInputFocus = (index) => {
-    console.log(inputRef.current[0].value);
-    inputRef.current[index].focus();
+  const handleSumbitQuestion = (e) => {
+    e.preventDefault();
+    dispatch(
+      handleSaveQuestion({
+        title,
+        optionOneText: option1,
+        optionTwoText: option2,
+        author: authedUser,
+      })
+    );
+    console.log(title, option1, option2);
   };
-
-  console.log("component re-rendered");
 
   return (
     <Centered>
@@ -100,9 +106,7 @@ const NewQuestion = () => {
             type="text"
             placeholder="Type a question or title..."
             value={title}
-            ref={(el) => (inputRef.current[0] = el)}
             onChange={handleTitleChange}
-            // onClick={() => handleInputFocus(0)}
           />
         </PollHeader>
         <PollContent>
@@ -113,20 +117,14 @@ const NewQuestion = () => {
                 name="option1"
                 text={"Option 1"}
                 value={option1}
-                ref1={(el) => (inputRef.current[1] = el)}
                 onChange={handleOption1Change}
-                onClick={handleInputFocus}
-                index={1}
               />
               <Divider />
               <NewPoll
                 name="option2"
                 text={"Option 2"}
                 value={option2}
-                ref1={(el) => (inputRef.current[2] = el)}
-                index={2}
                 onChange={handleOption2Change}
-                onClick={handleInputFocus}
               />
             </InputContainer>
             <Divider />
@@ -135,7 +133,7 @@ const NewQuestion = () => {
                 <Button flat type="submit">
                   Cancel
                 </Button>
-                <Button secondary type="submit">
+                <Button secondary type="submit" onClick={handleSumbitQuestion}>
                   Create
                 </Button>
               </Container>
@@ -147,4 +145,4 @@ const NewQuestion = () => {
   );
 };
 
-export default NewQuestion;
+export default connect()(NewQuestion);

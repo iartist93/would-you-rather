@@ -49,14 +49,12 @@ export const handleInitalData = () => {
  * @param {*} answer either `"optionOne"` or `"optionTwo"`
  */
 export const handleAddVote = (authedUser, qid, answer) => {
-  console.log("handler", authedUser, qid, answer);
   return async (dispatch) => {
-    const result = await fakeData._saveQuestionAnswer({
+    await fakeData._saveQuestionAnswer({
       authedUser,
       qid,
       answer,
     });
-    console.log(result);
     dispatch(addVote(authedUser, qid, answer));
   };
 };

@@ -25,7 +25,7 @@ const questions = (state = {}, action) => {
         },
       };
     case ADD_QUESTION:
-      break;
+      return { ...state, [action.question.id]: action.question };
     case GET_NEXT:
       break;
     case ADD_COMMENT:
