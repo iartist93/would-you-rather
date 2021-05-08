@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Header from "./Header";
+import Header from "../question/Header";
 import Footer from "./Footer";
 import Content from "./Content";
 
@@ -18,6 +18,8 @@ const Question = ({ qid, question, users, authedUserId }) => {
         avatarURL={users[question.author].avatarURL}
         author={users[question.author].name}
         timestamp={question.timestamp}
+        qid={qid}
+        showDetails
       />
       <Content question={question} votersAvatars={votersAvatars} />
       {/* TODO:: Re-Enable the comments again */}

@@ -11,8 +11,11 @@ import Login from "./login/Login";
 import NewQuestion from "./newQuestion/NewQuestion";
 import Leaderboard from "./leaderboard/Leaderboard";
 import AnsweredList from "./answered/AnsweredList";
+import QuestionDetails from "./questionDetails/QuestionDetails";
+
 import { handleInitalData } from "../actions/shared";
 import { handleUserLogin } from "../actions/shared";
+
 import LogoImage from "../logo2.png";
 
 const Logo = styled.img`
@@ -51,6 +54,9 @@ function App({ dispatch, loading, authedUserId, active }) {
               </Route>
               <Route exact path="/leaderboard">
                 <Leaderboard />
+              </Route>
+              <Route exact path="/questions/:id">
+                <QuestionDetails />
               </Route>
             </>
           )

@@ -17,8 +17,14 @@ export const Divider = styled.div`
 
 export const Row = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+
+  ${(props) =>
+    props.spaced &&
+    css`
+      justify-content: space-between;
+    `}
 `;
 
 export const Container = styled.div`
