@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import Question from "./Question";
 import { Container } from "../CustomStyles";
 
-const AnsweredList = ({ authedUser, questions, users }) => {
-  console.log(users[authedUser.answers]);
+const AnsweredList = ({ authedUserId, questions, users }) => {
+  console.log(users[authedUserId.answers]);
 
-  const ids = Object.keys(users[authedUser].answers).sort(
+  const ids = Object.keys(users[authedUserId].answers).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp
   );
 
@@ -23,7 +23,7 @@ const AnsweredList = ({ authedUser, questions, users }) => {
 const mapStateToProps = (state) => ({
   questions: state.questions,
   users: state.users,
-  authedUser: state.authedUser?.id,
+  authedUserId: state.authedUser?.id,
 });
 
 export default connect(mapStateToProps)(AnsweredList);

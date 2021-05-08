@@ -11,7 +11,9 @@ const Header = ({ avatarURL, timestamp, author }) => {
     <PollHeader>
       <Centered>
         <Avatar src={avatarURL} />
-        <span>Poll by @{author} </span>
+        <div>
+          Poll by <span style={{ fontWeight: 600 }}>@{author}</span>{" "}
+        </div>
       </Centered>
       <QuestionTimeStamp timestamp={timestamp} />
     </PollHeader>

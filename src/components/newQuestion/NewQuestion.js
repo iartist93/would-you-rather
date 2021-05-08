@@ -67,7 +67,7 @@ const Input = styled.input`
   }
 `;
 
-const NewQuestion = ({ dispatch, authedUser }) => {
+const NewQuestion = ({ dispatch, authedUserId }) => {
   const [title, setTitle] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
@@ -93,7 +93,7 @@ const NewQuestion = ({ dispatch, authedUser }) => {
         title,
         optionOneText: option1,
         optionTwoText: option2,
-        author: authedUser,
+        author: authedUserId,
       })
     );
     history.replace("/");
@@ -161,7 +161,7 @@ const NewQuestion = ({ dispatch, authedUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authedUser: state.authedUser?.id,
+  authedUserId: state.authedUser?.id,
 });
 
 export default connect(mapStateToProps)(NewQuestion);

@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 
 import { handleAddVote } from "../../actions/shared";
 
-const Content = ({ question, votersAvatars, dispatch, authedUser }) => {
+const Content = ({ question, votersAvatars, dispatch, authedUserId }) => {
   const [selected, setSelected] = useState(null);
 
   const handleSelectionChange = (e) => {
@@ -26,7 +26,7 @@ const Content = ({ question, votersAvatars, dispatch, authedUser }) => {
 
   const handleVote = (e) => {
     e.preventDefault();
-    dispatch(handleAddVote(authedUser, question.id, selected));
+    dispatch(handleAddVote(authedUserId, question.id, selected));
   };
 
   return (
@@ -82,7 +82,7 @@ const Content = ({ question, votersAvatars, dispatch, authedUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-  authedUser: state.authedUser?.id,
+  authedUserId: state.authedUser?.id,
 });
 
 export default connect(mapStateToProps)(Content);

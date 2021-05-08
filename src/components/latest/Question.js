@@ -7,7 +7,7 @@ import Content from "./Content";
 
 import { RoundedContainer } from "../CustomStyles";
 
-const Question = ({ qid, question, users, authedUser }) => {
+const Question = ({ qid, question, users, authedUserId }) => {
   // get all voters for current question
   const voters = question.optionOne.votes.concat(question.optionTwo.votes);
   const votersAvatars = voters.map((voter) => users[voter].avatarURL);
@@ -27,7 +27,7 @@ const Question = ({ qid, question, users, authedUser }) => {
 };
 
 const mapStateToProps = (state, { qid }) => ({
-  authedUser: state.authedUser?.id,
+  authedUserId: state.authedUser?.id,
   question: state.questions[qid],
   users: state.users,
   qid,

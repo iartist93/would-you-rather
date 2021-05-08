@@ -11,7 +11,7 @@ import AnsweredList from "./answered/AnsweredList";
 import { handleInitalData } from "../actions/shared";
 import { handleUserLogin } from "../actions/shared";
 
-function App({ dispatch, loading, authedUser }) {
+function App({ dispatch, loading, authedUserId }) {
   const [activeNavItem, setActiveNavItem] = useState("Latest");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function App({ dispatch, loading, authedUser }) {
   return (
     <Router>
       <div className="App">
-        {authedUser ? (
+        {authedUserId ? (
           loading === true ? (
             <div> Is Loading </div>
           ) : (
@@ -55,7 +55,7 @@ function App({ dispatch, loading, authedUser }) {
 
 const mapStateToProps = (state) => ({
   loading: state.loading,
-  authedUser: state.authedUser?.id,
+  authedUserId: state.authedUser?.id,
 });
 
 export default connect(mapStateToProps)(App);
