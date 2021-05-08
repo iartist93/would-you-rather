@@ -3,6 +3,8 @@ import { Button, Row } from "../CustomStyles";
 import styled from "@emotion/styled";
 
 import { handleSignout } from "../../firebase/firebase";
+import { connect } from "react-redux";
+import { handleSignoutExistingUser } from "../../actions/authedUser";
 
 //TODO: Refactor this
 const Avatar = styled.img`
@@ -12,16 +14,22 @@ const Avatar = styled.img`
   margin-right: 1rem;
 `;
 
-const UserDetails = ({ authedUser }) => {
+const UserDetails = ({ authedUser, dispatch }) => {
+  //TODO: Refactossr this
+  const handleLogout = () => {
+    dispatch(handleSignoutExistingUser());
+    handleSignout();
+  };
+
   return (
     <Row>
       <Avatar src={authedUser.avatarURL} />
       <p>{authedUser.name}</p>
-      <Button flat onClick={() => handleSignout()}>
+      <Button flat onClick={handleLogout}>
         Logout
       </Button>
     </Row>
   );
 };
 
-export default UserDetails;
+export default connect()(UserDetails);

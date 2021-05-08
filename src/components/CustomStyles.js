@@ -7,6 +7,18 @@ export const SecondaryColor = "#4689ff";
 
 export const Space = styled.div`
   background-color: red;
+
+  ${(props) =>
+    props.height &&
+    css`
+      height: ${props.height};
+    `}
+
+  ${(props) =>
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
 `;
 
 export const Divider = styled.div`
@@ -276,6 +288,13 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  ${(props) =>
+    props.centered &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `}
 `;
 
 export const PollContent = styled.div`
