@@ -2,43 +2,27 @@ import "../App.css";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import Latest from "./latest/Latest";
 import Navbar from "./navbar/Navbar";
+import Login from "./login/Login";
 import NewQuestion from "./newQuestion/NewQuestion";
 import Leaderboard from "./leaderboard/Leaderboard";
 import AnsweredList from "./answered/AnsweredList";
-import Login from "./login/Login";
 import { handleInitalData } from "../actions/shared";
+import { handleUserLogin } from "../actions/shared";
 
-import { firebase } from "../firebase/firebase";
-
-function App({ dispatch, loading }) {
+function App({ dispatch, loading, authedUser }) {
   const [activeNavItem, setActiveNavItem] = useState("Latest");
 
   useEffect(() => {
     dispatch(handleInitalData());
+    dispatch(handleUserLogin());
   }, [dispatch]);
-
-  const currentUser = firebase.auth().currentUser;
-  const [user, setUser] = useState(currentUser);
-
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((authedUser) => {
-      if (authedUser) {
-        console.log(`Hello ${authedUser.displayName} welcone`);
-        setUser(authedUser);
-      } else {
-        console.log(`Hello "undefined" `);
-        setUser(null);
-      }
-    });
-  }, []);
 
   return (
     <Router>
       <div className="App">
-        {user ? (
+        {authedUser ? (
           loading === true ? (
             <div> Is Loading </div>
           ) : (
@@ -71,6 +55,7 @@ function App({ dispatch, loading }) {
 
 const mapStateToProps = (state) => ({
   loading: state.loading,
+  authedUser: state.authedUser?.id,
 });
 
 export default connect(mapStateToProps)(App);

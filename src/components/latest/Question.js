@@ -7,10 +7,7 @@ import Content from "./Content";
 
 import { RoundedContainer } from "../CustomStyles";
 
-const Question = ({ qid, question, users }) => {
-  //TODO: replace this with state
-  const authedUser = "johndoe";
-
+const Question = ({ qid, question, users, authedUser }) => {
   // get all voters for current question
   const voters = question.optionOne.votes.concat(question.optionTwo.votes);
   const votersAvatars = voters.map((voter) => users[voter].avatarURL);
@@ -19,16 +16,18 @@ const Question = ({ qid, question, users }) => {
     <RoundedContainer>
       <Header
         avatarURL={users[question.author].avatarURL}
-        author={question.author}
+        author={users[question.author].name}
         timestamp={question.timestamp}
       />
       <Content question={question} votersAvatars={votersAvatars} />
-      <Footer avatarURL={users[authedUser].avatarURL} />
+      {/* TODO:: Re-Enable the comments again */}
+      {/* <Footer avatarURL={users[authedUser].avatarURL} /> */}
     </RoundedContainer>
   );
 };
 
 const mapStateToProps = (state, { qid }) => ({
+  authedUser: state.authedUser?.id,
   question: state.questions[qid],
   users: state.users,
   qid,

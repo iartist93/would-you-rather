@@ -4,6 +4,7 @@ import { Container, Centered, Button, Divider } from "../CustomStyles";
 import NewPoll from "./NewPoll";
 import { connect } from "react-redux";
 import { handleSaveQuestion } from "../../actions/questions";
+import { useHistory } from "react-router-dom";
 
 const PollContainer = styled.div`
   background-color: white;
@@ -66,12 +67,12 @@ const Input = styled.input`
   }
 `;
 
-const NewQuestion = ({ dispatch }) => {
-  const authedUser = "johndoe";
-
+const NewQuestion = ({ dispatch, authedUser }) => {
   const [title, setTitle] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
+
+  const history = useHistory();
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -95,7 +96,16 @@ const NewQuestion = ({ dispatch }) => {
         author: authedUser,
       })
     );
-    console.log(title, option1, option2);
+    history.replace("/");
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    history.replace("/");
+  };
+
+  const isDisabled = () => {
+    return !(Boolean(option1) && Boolean(option2));
   };
 
   return (
@@ -130,10 +140,15 @@ const NewQuestion = ({ dispatch }) => {
             <Divider />
             <Container spaced top="1rem">
               <Container spaced>
-                <Button flat type="submit">
+                <Button flat type="submit" onClick={handleCancel}>
                   Cancel
                 </Button>
-                <Button secondary type="submit" onClick={handleSumbitQuestion}>
+                <Button
+                  secondary
+                  type="submit"
+                  onClick={handleSumbitQuestion}
+                  disabled={isDisabled()}
+                >
                   Create
                 </Button>
               </Container>
@@ -145,4 +160,8 @@ const NewQuestion = ({ dispatch }) => {
   );
 };
 
-export default connect()(NewQuestion);
+const mapStateToProps = (state) => ({
+  authedUser: state.authedUser?.id,
+});
+
+export default connect(mapStateToProps)(NewQuestion);

@@ -109,7 +109,7 @@ class Navbar extends React.Component {
 export const navItems = {
   Latest: "/",
   Answered: "/answered",
-  Stared: "/stared",
+  // Stared: "/stared",
   Leaderboard: "/leaderboard",
 };
 

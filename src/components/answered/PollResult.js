@@ -27,7 +27,7 @@ const PollResult = ({ name, text, votes, totalVotes }) => {
     margin-right: 1rem;
   `;
 
-  const percentage = votes / totalVotes;
+  const percentage = Math.round((votes / totalVotes) * 10000) / 10000;
 
   return (
     <PollItem percentage={percentage}>

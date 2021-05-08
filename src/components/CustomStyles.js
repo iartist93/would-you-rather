@@ -74,7 +74,7 @@ export const Centered = styled.div`
     css`
       ::before {
         content: "";
-        width: 14rem;
+        width: 21rem;
       }
       justify-content: flex-start;
       flex: 1 1 auto;
@@ -93,6 +93,15 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      color: gray;
+      background-color: #d3d3d3d3;
+      border-color: transparent;
+    `}
 
   ${(props) =>
     props.primary &&
@@ -101,13 +110,25 @@ export const Button = styled.button`
       background-color: ${PrimaryColor};
       border-color: transparent;
     `}
+
   ${(props) =>
     props.secondary &&
     css`
       color: white;
       background-color: ${SecondaryColor};
       border-color: transparent;
+
+      &:hover {
+        background-color: ${PrimaryColor};
+      }
+
+      &:disabled {
+        color: gray;
+        background-color: #d3d3d3d3;
+        border-color: transparent;
+      }
     `}
+
   ${(props) =>
     props.outlined &&
     css`
@@ -115,12 +136,17 @@ export const Button = styled.button`
       background-color: transparent;
       border: 2px solid #8f8f8f;
     `}
+
     ${(props) =>
     props.flat &&
     css`
       color: #3b3b3b;
       background-color: transparent;
       border: none;
+
+      &:hover {
+        color: black;
+      }
     `}
 `;
 

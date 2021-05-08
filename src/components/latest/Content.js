@@ -17,10 +17,7 @@ import { connect } from "react-redux";
 
 import { handleAddVote } from "../../actions/shared";
 
-const Content = ({ question, votersAvatars, dispatch }) => {
-  //TODO: replace this with state
-  const authedUser = "johndoe";
-
+const Content = ({ question, votersAvatars, dispatch, authedUser }) => {
   const [selected, setSelected] = useState(null);
 
   const handleSelectionChange = (e) => {
@@ -57,9 +54,10 @@ const Content = ({ question, votersAvatars, dispatch }) => {
             <Button secondary type="submit" onClick={handleVote}>
               Vote
             </Button>
-            <Button outlined type="submit">
+            {/* TODO:: Re-Enable Skip button */}
+            {/* <Button outlined type="submit">
               <BsSkipEndFill size="1.4rem" color={"#3b3b3b"} /> Skip
-            </Button>
+            </Button> */}
           </Centered>
           <Centered trilling>
             <FiBarChart2 color="#154499" />
@@ -83,4 +81,8 @@ const Content = ({ question, votersAvatars, dispatch }) => {
   );
 };
 
-export default connect()(Content);
+const mapStateToProps = (state) => ({
+  authedUser: state.authedUser?.id,
+});
+
+export default connect(mapStateToProps)(Content);

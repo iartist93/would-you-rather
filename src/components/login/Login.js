@@ -25,7 +25,6 @@ const Login = () => {
         <h3>Login with google</h3>
         <GoogleButton
           onClick={() => {
-            console.log("Google button clicked");
             handleSignin();
           }}
         />

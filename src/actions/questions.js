@@ -43,7 +43,6 @@ export const addComment = (comment, qid) => ({
 export const handleSaveQuestion = (question) => {
   return async (dispatch) => {
     const reuslt = await fakeData._saveQuestion(question);
-    console.log(reuslt);
     dispatch(addQuestion(reuslt));
   };
 };

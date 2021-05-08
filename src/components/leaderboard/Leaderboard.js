@@ -7,6 +7,9 @@ import LeaderboardItem from "./LeaderboardItem";
 import { RoundedContainer, Container } from "../CustomStyles";
 
 const Leaderboard = ({ questions, users }) => {
+  console.log("Leaderboard");
+  console.log(users);
+
   const userTotalAnswersMap = Object.values(users).map((user) => ({
     user,
     totalAnswers: Object.keys(user.answers).length,
@@ -18,8 +21,6 @@ const Leaderboard = ({ questions, users }) => {
       b.user.questions.length -
       (a.totalAnswers + a.user.questions.length)
   );
-
-  console.log(sortedAnswers);
 
   return (
     <Container center aligncenter column>

@@ -15,7 +15,7 @@ const Question = ({ id, question, users }) => {
     <RoundedContainer>
       <Header
         avatarURL={users[question.author].avatarURL}
-        author={question.author}
+        author={users[question.author].name}
         timestamp={question.timestamp}
       />
       <Content question={question} />
