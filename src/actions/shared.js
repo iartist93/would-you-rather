@@ -83,8 +83,9 @@ export const handleUserLogin = () => {
   return async (dispatch) => {
     dispatch(showLoading());
     dispatch(recieveAuthedUser(firebase.auth().currentUser));
-    firebase.auth().onAuthStateChanged((authedUser) => {
+    firebase.auth().onAuthStateChanged(async (authedUser) => {
       if (authedUser) {
+        await fakeData._saveUser(authedUser);
         dispatch(recieveAuthedUser(authedUser));
       } else {
         dispatch(recieveAuthedUser(null));

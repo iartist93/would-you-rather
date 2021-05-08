@@ -40,16 +40,7 @@ let questions = {
     author: "sarahedo",
     timestamp: 1467166872634,
     optionOne: {
-      votes: [
-        "sarahedo",
-        "sarahedo",
-        "sarahedo",
-        "sarahedo",
-        "sarahedo",
-        "sarahedo",
-        "sarahedo",
-        "sarahedo",
-      ],
+      votes: ["sarahedo"],
       text: "have horrible short term memory",
     },
     optionTwo: {
@@ -160,54 +151,81 @@ function formatQuestion({ title, optionOneText, optionTwoText, author }) {
   };
 }
 
+const formatUser = ({ uid, displayName, photoURL }) => ({
+  id: uid,
+  name: displayName,
+  avatarURL: photoURL,
+  answers: {},
+  questions: [],
+});
+
 export function _saveQuestion(question) {
   return new Promise((res, rej) => {
     const authedUser = question.author;
     const formattedQuestion = formatQuestion(question);
 
     setTimeout(() => {
-      // questions = {
-      //   ...questions,
-      //   [formattedQuestion.id]: formattedQuestion,
-      // };
+      questions = {
+        ...questions,
+        [formattedQuestion.id]: formattedQuestion,
+      };
 
-      // users = {
-      //   ...users,
-      //   [authedUser]: {
-      //     ...users[authedUser],
-      //     questions: users[authedUser].questions.concat([formattedQuestion.id]),
-      //   },
-      // };
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          questions: users[authedUser].questions.concat([formattedQuestion.id]),
+        },
+      };
 
       res(formattedQuestion);
     }, 1000);
   });
 }
 
-export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+export const _saveUser = (user) => {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      // users = {
-      //   ...users,
-      //   [authedUser]: {
-      //     ...users[authedUser],
-      //     answers: {
-      //       ...users[authedUser].answers,
-      //       [qid]: answer,
-      //     },
-      //   },
-      // };
+      users = {
+        ...users,
+        [user.uid]: formatUser(user),
+      };
+      console.log(" save users ....");
+      console.log(users);
 
-      // questions = {
-      //   ...questions,
-      //   [qid]: {
-      //     ...questions[qid],
-      //     [answer]: {
-      //       ...questions[qid][answer],
-      //       votes: questions[qid][answer].votes.concat([authedUser]),
-      //     },
-      //   },
-      // };
+      res();
+    }, 500);
+  });
+};
+
+export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+  console.log("Save questions");
+
+  console.log(authedUser);
+
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          answers: {
+            ...users[authedUser].answers,
+            [qid]: answer,
+          },
+        },
+      };
+
+      questions = {
+        ...questions,
+        [qid]: {
+          ...questions[qid],
+          [answer]: {
+            ...questions[qid][answer],
+            votes: questions[qid][answer].votes.concat([authedUser]),
+          },
+        },
+      };
 
       res();
     }, 500);
