@@ -29,5 +29,9 @@ export const handleSignin = () => {
   firebase.auth().signInWithRedirect(provider);
 };
 
+export const handleSignout = () => {
+  firebase.auth().signOut();
+};
+
 //---------------------------------------------------
 export { firebase };

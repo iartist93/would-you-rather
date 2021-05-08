@@ -46,7 +46,7 @@ function App({ dispatch, loading, authedUserId, active }) {
               <Route exact path="/answered">
                 <AnsweredList />
               </Route>
-              <Route exact path="/new">
+              <Route exact path="/add">
                 <NewQuestion />
               </Route>
               <Route exact path="/leaderboard">

@@ -4,9 +4,10 @@ import styled from "@emotion/styled";
 import { RiAddLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
-import { PrimaryColor } from "../CustomStyles";
+import { PrimaryColor, Space } from "../CustomStyles";
 import { recieveActive } from "../../actions/active";
 import { connect } from "react-redux";
+import UserDetails from "./UserDetails";
 
 const NavItem = styled.div`
   display: inline-block;
@@ -45,15 +46,9 @@ const Header = styled.div`
   border-bottom: 3px solid #eeeeee;
 `;
 
-const Logo = styled.img`
-  width: 40px;
-  height: 40px;
-  margin: 0 2rem;
-`;
+const NavLinks = styled.div``;
 
-const Nav = styled.div``;
-
-const NavUser = styled.div`
+const NavButton = styled.div`
   width: 5.5rem;
   height: 2.5rem;
   border-radius: 5px;
@@ -82,14 +77,21 @@ const NavLink = styled(Link)`
     `}
 `;
 
+//TODO: Refactor this > UserDetails
+const Avatar = styled.img`
+  width: 40px;
+  height: 40px;
+  margin: 0 2rem;
+`;
+
 class Navbar extends React.Component {
   render() {
-    const { active, dispatch } = this.props;
+    const { active, dispatch, authedUser } = this.props;
 
     return (
       <Header>
-        <Logo src={LogoImage} />
-        <Nav>
+        <Avatar src={LogoImage} />
+        <NavLinks>
           {Object.values(navItems).map((path) => (
             <NavItem active={active === path.name} key={path.name}>
               <NavLink
@@ -100,16 +102,18 @@ class Navbar extends React.Component {
               </NavLink>
             </NavItem>
           ))}
-        </Nav>
-        <NavUser>
+        </NavLinks>
+        <Space />
+        <UserDetails authedUser={authedUser} />
+        <NavButton>
           <NavLink
-            to="/new"
+            to="/add"
             onClick={() => dispatch(recieveActive(null))}
             asbutton
           >
             <RiAddLine size="1.5rem" /> New
           </NavLink>
-        </NavUser>
+        </NavButton>
       </Header>
     );
   }
@@ -122,4 +126,8 @@ export const navItems = {
   Leaderboard: { name: "Leaderboard", route: "/leaderboard" },
 };
 
-export default connect()(Navbar);
+const mapStateToProps = (state) => ({
+  authedUser: state.authedUser,
+});
+
+export default connect(mapStateToProps)(Navbar);

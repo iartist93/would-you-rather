@@ -15,6 +15,12 @@ export const Divider = styled.div`
   background-color: #b4bbca;
 `;
 
+export const Row = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Container = styled.div`
   width: 100%;
   display: flex;
