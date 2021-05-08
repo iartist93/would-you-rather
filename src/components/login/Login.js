@@ -3,6 +3,7 @@ import GoogleButton from "react-google-button";
 import { Container, RoundedContainer } from "../CustomStyles";
 import LogoImage from "../../logo2.png";
 import styled from "@emotion/styled";
+import { handleSignin } from "../../firebase/firebase";
 
 const Logo = styled.img`
   width: 100px;
@@ -25,6 +26,7 @@ const Login = () => {
         <GoogleButton
           onClick={() => {
             console.log("Google button clicked");
+            handleSignin();
           }}
         />
       </RoundedContainer>
