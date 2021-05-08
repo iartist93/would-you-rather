@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { AiFillCheckCircle } from "react-icons/ai";
-import { PrimaryColor } from "../CustomStyles";
 
 const PollResult = ({ name, text, votes, totalVotes, userAnswer }) => {
   const PollItem = styled.div`

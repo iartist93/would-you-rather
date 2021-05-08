@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Header from "../question/Header";
-import Footer from "./Footer";
 import Content from "./Content";
 
 import { RoundedContainer } from "../CustomStyles";

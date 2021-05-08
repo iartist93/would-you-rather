@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BsSkipEndFill } from "react-icons/bs";
 import { FiBarChart2 } from "react-icons/fi";
 
 import PollInput from "./PollInput";
