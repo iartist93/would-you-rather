@@ -62,17 +62,23 @@ const Content = ({ question, votersAvatars, dispatch, authedUserId }) => {
           <Centered trilling>
             <FiBarChart2 color="#154499" />
             <Text>Voted</Text>
-            {votersAvatars.slice(0, 6).map((voter, index) => (
-              <Avatar
-                key={index}
-                src={voter}
-                size="1.4rem"
-                stacked
-                index={index}
-              />
-            ))}
-            {votersAvatars.length > 6 && (
-              <EmptyAvatar>+{votersAvatars.length - 6}</EmptyAvatar>
+            {votersAvatars.length > 0 ? (
+              <>
+                {votersAvatars.slice(0, 6).map((voter, index) => (
+                  <Avatar
+                    key={index}
+                    src={voter}
+                    size="1.4rem"
+                    stacked
+                    index={index}
+                  />
+                ))}
+                {votersAvatars.length > 6 && (
+                  <EmptyAvatar>+{votersAvatars.length - 6}</EmptyAvatar>
+                )}
+              </>
+            ) : (
+              "No votes yet"
             )}
           </Centered>
         </Container>

@@ -1,5 +1,6 @@
 import "../services/_DATA";
 import * as fakeData from "../services/_DATA";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 //----------------------------------------------------//
 // Constants
@@ -42,7 +43,9 @@ export const addComment = (comment, qid) => ({
  */
 export const handleSaveQuestion = (question) => {
   return async (dispatch) => {
+    dispatch(showLoading());
     const reuslt = await fakeData._saveQuestion(question);
     dispatch(addQuestion(reuslt));
+    dispatch(hideLoading());
   };
 };

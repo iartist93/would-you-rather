@@ -3,6 +3,7 @@ import { recieveQuestions } from "./questions";
 import { recieveUsers } from "./users";
 import { toggleLoading } from "./loading";
 import { firebase } from "../firebase/firebase";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 //----------------------------------------------------//
 // Constants
@@ -46,6 +47,7 @@ const recieveAuthedUser = (user) => ({
  */
 export const handleInitalData = () => {
   return async (dispatch) => {
+    dispatch(showLoading());
     const [questions, users] = await Promise.all([
       fakeData._getQuestions(),
       fakeData._getUsers(),
@@ -53,6 +55,7 @@ export const handleInitalData = () => {
     dispatch(recieveQuestions(questions));
     dispatch(recieveUsers(users));
     dispatch(toggleLoading());
+    dispatch(hideLoading());
   };
 };
 
@@ -65,17 +68,20 @@ export const handleInitalData = () => {
  */
 export const handleAddVote = (authedUser, qid, answer) => {
   return async (dispatch) => {
+    dispatch(showLoading());
     await fakeData._saveQuestionAnswer({
       authedUser,
       qid,
       answer,
     });
     dispatch(addVote(authedUser, qid, answer));
+    dispatch(hideLoading());
   };
 };
 
 export const handleUserLogin = () => {
   return async (dispatch) => {
+    dispatch(showLoading());
     dispatch(recieveAuthedUser(firebase.auth().currentUser));
     firebase.auth().onAuthStateChanged((authedUser) => {
       if (authedUser) {
@@ -84,6 +90,7 @@ export const handleUserLogin = () => {
         dispatch(recieveAuthedUser(null));
       }
     });
+    dispatch(hideLoading());
   };
 };
 
