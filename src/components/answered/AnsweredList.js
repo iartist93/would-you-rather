@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Question from "./Question";
 import { Container } from "../CustomStyles";
+import { recieveActive } from "../../actions/active";
+import { navItems } from "../navbar/Navbar";
 
-const AnsweredList = ({ authedUserId, questions, users }) => {
-  console.log(users[authedUserId.answers]);
+const AnsweredList = ({ authedUserId, questions, users, dispatch }) => {
+  useEffect(() => {
+    dispatch(recieveActive(navItems.Answered.name));
+  }, [dispatch]);
 
   const ids = Object.keys(users[authedUserId].answers).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp

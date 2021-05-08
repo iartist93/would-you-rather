@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { Container, Centered, Button, Divider } from "../CustomStyles";
 import NewPoll from "./NewPoll";
 import { connect } from "react-redux";
 import { handleSaveQuestion } from "../../actions/questions";
 import { useHistory } from "react-router-dom";
+
+import { recieveActive } from "../../actions/active";
 
 const PollContainer = styled.div`
   background-color: white;
@@ -107,6 +109,10 @@ const NewQuestion = ({ dispatch, authedUserId }) => {
   const isDisabled = () => {
     return !(Boolean(option1) && Boolean(option2));
   };
+
+  useEffect(() => {
+    dispatch(recieveActive(null));
+  }, [dispatch]);
 
   return (
     <Centered>

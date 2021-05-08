@@ -1,5 +1,5 @@
 import "../App.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Latest from "./latest/Latest";
@@ -11,9 +11,7 @@ import AnsweredList from "./answered/AnsweredList";
 import { handleInitalData } from "../actions/shared";
 import { handleUserLogin } from "../actions/shared";
 
-function App({ dispatch, loading, authedUserId }) {
-  const [activeNavItem, setActiveNavItem] = useState("Latest");
-
+function App({ dispatch, loading, authedUserId, active }) {
   useEffect(() => {
     dispatch(handleInitalData());
     dispatch(handleUserLogin());
@@ -27,10 +25,7 @@ function App({ dispatch, loading, authedUserId }) {
             <div> Is Loading </div>
           ) : (
             <>
-              <Navbar
-                active={activeNavItem}
-                onActiveChange={setActiveNavItem}
-              />
+              <Navbar active={active} />
               <Route exact path="/">
                 <Latest />
               </Route>
@@ -56,6 +51,7 @@ function App({ dispatch, loading, authedUserId }) {
 const mapStateToProps = (state) => ({
   loading: state.loading,
   authedUserId: state.authedUser?.id,
+  active: state.active,
 });
 
 export default connect(mapStateToProps)(App);

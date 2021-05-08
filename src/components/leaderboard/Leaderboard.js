@@ -1,15 +1,12 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
 import LeaderboardItem from "./LeaderboardItem";
-
 import { RoundedContainer, Container } from "../CustomStyles";
 
-const Leaderboard = ({ questions, users }) => {
-  console.log("Leaderboard");
-  console.log(users);
+import { recieveActive } from "../../actions/active";
+import { navItems } from "../navbar/Navbar";
 
+const Leaderboard = ({ users, dispatch }) => {
   const userTotalAnswersMap = Object.values(users).map((user) => ({
     user,
     totalAnswers: Object.keys(user.answers).length,
@@ -21,6 +18,10 @@ const Leaderboard = ({ questions, users }) => {
       b.user.questions.length -
       (a.totalAnswers + a.user.questions.length)
   );
+
+  useEffect(() => {
+    dispatch(recieveActive(navItems.Leaderboard.name));
+  }, [dispatch]);
 
   return (
     <Container center aligncenter column>
@@ -41,7 +42,6 @@ const Leaderboard = ({ questions, users }) => {
 };
 
 const mapStateToProps = (state) => ({
-  questions: state.questions,
   users: state.users,
 });
 
