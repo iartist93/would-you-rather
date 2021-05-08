@@ -8,6 +8,7 @@ import Navbar from "./navbar/Navbar";
 import NewQuestion from "./newQuestion/NewQuestion";
 import Leaderboard from "./leaderboard/Leaderboard";
 import AnsweredList from "./answered/AnsweredList";
+import Login from "./login/Login";
 
 import { handleInitalData } from "../actions/shared";
 
@@ -21,7 +22,9 @@ function App({ dispatch, loading }) {
   return (
     <Router>
       <div className="App">
-        {loading === true ? (
+        <Login />
+
+        {/* {loading === true ? (
           <div> Is Loading </div>
         ) : (
           <>
@@ -39,7 +42,7 @@ function App({ dispatch, loading }) {
               <Leaderboard />
             </Route>
           </>
-        )}
+        )} */}
       </div>
     </Router>
   );

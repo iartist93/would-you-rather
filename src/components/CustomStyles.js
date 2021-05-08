@@ -176,6 +176,18 @@ export const RoundedContainer = styled.div`
     css`
       height: ${props.height};
     `}
+
+  ${(props) =>
+    props.aligncenter &&
+    css`
+      align-items: center;
+    `}
+
+  ${(props) =>
+    props.centered &&
+    css`
+      justify-content: center;
+    `}
 `;
 
 export const QuestionTimeStamp = styled(TimeStamp)`
