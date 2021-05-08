@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { Container, Centered, Button, Divider } from "../CustomStyles";
 import NewPoll from "./NewPoll";
