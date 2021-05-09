@@ -61,7 +61,9 @@ const Login = ({ users, dispatch }) => {
         <Form centered>
           <Select onChange={handleSelectedUserChange} value={selectedUser}>
             {existingUsers.map((user) => (
-              <Option value={user.id}>{user.name}</Option>
+              <Option value={user.id} key={user.id}>
+                {user.name}
+              </Option>
             ))}
           </Select>
           <Space height="1rem" />

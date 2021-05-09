@@ -69,12 +69,6 @@ const NavLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  ${(props) =>
-    props.asbutton &&
-    css`
-      color: white;
-    `}
 `;
 
 //TODO: Refactor this > UserDetails
@@ -107,9 +101,9 @@ class Navbar extends React.Component {
         <UserDetails authedUser={authedUser} />
         <NavButton>
           <NavLink
+            style={{ color: "white" }}
             to="/add"
             onClick={() => dispatch(recieveActive(null))}
-            asbutton
           >
             <RiAddLine size="1.5rem" /> New
           </NavLink>
